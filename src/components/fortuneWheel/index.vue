@@ -153,13 +153,7 @@ export default Vue.extend({
     },
     // 为了概率生成的奖品id的数组
     prizesIdArr (): Array<number> {
-      const idArr: number[] = []
-      this.prizes.forEach((row) => {
-        const count: number = this.useWeight ? (row.weight || 0) : ((row.probability || 0) * this.decimalSpaces)
-        const arr = (new Array(count)).fill(row.id)
-        idArr.push(...arr)
-      })
-      return idArr
+      return this.prizes.map(p => p.id)
     },
     // 奖品的概率保留几位小数, 最多保留 4 位 => ( 0: 1, 1: 10, 2: 100, 3: 1000, 4: 10000 )
     decimalSpaces (): number {

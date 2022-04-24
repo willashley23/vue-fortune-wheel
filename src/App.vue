@@ -13,40 +13,13 @@
           @rotateEnd="onRotateEnd"
         />
       </div>
-      <div class="col-md-6">
-        <h2> Image </h2>
-
-        <FortuneWheel
-          style="width: 500px; max-width: 100%;"
-          type="image"
-          :useWeight="true"
-          :verify="canvasVerify"
-          :prizeId="prizeId"
-          :angleBase="-2"
-          :prizes="prizesImage"
-          @rotateStart="onImageRotateStart"
-          @rotateEnd="onRotateEnd"
-        >
-          <img slot="wheel" src="@/assets/wheel.png" style="transform: rotateZ(60deg)" />
-          <img slot="button" src="@/assets/button.png" style="width: 180px"/>
-        </FortuneWheel>
-
-        <div class="btn-list">
-          <div class="btn" v-for="(item, idx) in prizesCanvas" :key="idx" :style="{ background: item.bgColor }" @click="onChangePrize(item.id)"></div>
-        </div>
-        <div class="wheel-result">
-          当前 100% <span :style="{ background: prizeRes.bgColor }"></span>
-          <br/> 点击按钮，可在旋转中强行改变结果,
-          <br/> 最好在旋转减速前, 大约一半的时间之前, 最好一次旋转只改变一次
-        </div>
-      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import FortuneWheel from './components/FortuneWheel/index.vue'
+import FortuneWheel from './components/fortuneWheel/index.vue'
 
 interface PrizeConfig {
   /* eslint-disable */
@@ -83,7 +56,7 @@ export default Vue.extend({
           value: 'Blue\'s value', // 奖品值
           bgColor: '#45ace9', // 背景色
           color: '#ffffff', // 字体色
-          probability: 30 // 概率，最多保留 4 位小数
+          probability: 16.666666666666668 // 概率，最多保留 4 位小数
         },
         {
           id: 2,
@@ -91,7 +64,7 @@ export default Vue.extend({
           value: 'Red\'s value',
           bgColor: '#dd3832',
           color: '#ffffff',
-          probability: 40
+          probability: 16.666666666666668
         },
         {
           id: 3,
@@ -99,31 +72,33 @@ export default Vue.extend({
           value: 'Yellow\'s value',
           bgColor: '#fef151',
           color: '#ffffff',
-          probability: 30
-        }
-      ],
-      prizesImage: [
-        {
-          id: 1,
-          value: 'Blue\'s value', // 奖品值
-          weight: 1 // 权重
+          probability: 16.666666666666668
         },
         {
-          id: 2,
-          value: 'Red\'s value',
-          weight: 0
-        },
-        {
-          id: 3,
+          id: 4,
+          name: 'Yellow',
           value: 'Yellow\'s value',
-          weight: 0
+          bgColor: '#fef151',
+          color: '#ffffff',
+          probability: 16.666666666666668
+        },
+        {
+          id: 5,
+          name: 'Yellow',
+          value: 'Yellow\'s value',
+          bgColor: '#fef151',
+          color: '#ffffff',
+          probability: 16.666666666666668
+        },
+        {
+          id: 6,
+          name: 'Yellow',
+          value: 'Yellow\'s value',
+          bgColor: '#fef151',
+          color: '#ffffff',
+          probability: 16.666666666666668
         }
       ]
-    }
-  },
-  computed: {
-    prizeRes (): object {
-      return this.prizesImage.filter(item => item.id === this.prizeId)[0] || {}
     }
   },
   methods: {
