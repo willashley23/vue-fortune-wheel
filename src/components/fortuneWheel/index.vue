@@ -195,7 +195,7 @@ export default Vue.extend({
       return angle
     },
     canRotate (): boolean {
-      return !this.disabled && !this.isRotating && this.probabilityTotal === 100
+      return !this.disabled && !this.isRotating && Math.floor(this.probabilityTotal) === 100
     }
   },
   watch: {
@@ -223,7 +223,7 @@ export default Vue.extend({
   methods: {
     // 检测总概率是否为 100
     checkProbability () {
-      if (this.probabilityTotal !== 100) {
+      if (Math.floor(this.probabilityTotal) !== 100) {
         throw new Error('Prizes Is Error: Sum of probabilities is not 100!')
       }
       return true
